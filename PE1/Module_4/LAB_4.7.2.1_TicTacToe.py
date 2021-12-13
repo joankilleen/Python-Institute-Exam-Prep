@@ -2,8 +2,8 @@ LINE_START = "+-------+-------+-------+"
 LINE_CELL_PADDING = "|       |       |       |"
 CELL_START = "|   "
 CELL_END = "   "
-X = 'X'
-O = 'O'
+COMPUTER_MOVE = 'X'
+USER_MOVE = 'O'
 board = []
 
 
@@ -39,30 +39,68 @@ def enter_move(board):
         print("Not a valid move!")
         return
     for tup in free_fields:
-        row = int(tup[0])
-        col = int(tup[1])
+        
         if move == board[tup[0]][tup[1]]:
-            board[tup[0]][tup[1]] = O
+            board[tup[0]][tup[1]] = USER_MOVE
             return
             
 
-def make_list_of_free_fields(board):
-    
+def make_list_of_free_fields(board):    
     # The function browses the board and builds a list of all the free squares; 
     # the list consists of tuples, while each tuple is a pair of row and column numbers.
     free_fields = []
     for x in range(len(board)):
         for y in range(len(board[0])):
-            if board[x][y] != X and board[x][y] != O:
+            if board[x][y] != USER_MOVE and board[x][y] != COMPUTER_MOVE:
                 free_fields.append((x,y))
     return free_fields
-"""
+
 def victory_for(board, sign):
-    
     # The function analyzes the board's status in order to check if 
     # the player using 'O's or 'X's has won the game
-    print()
+    
+    # Check rows
+    x=0
+    y=0
+    for x in range(len(board)):
+        victory_row = True
+        for y in range(len(board[0])):
+            victory_row = victory_row and board[x][y] == sign
+        if victory_row:
+            return True
+    print("have checked rows ok")
+    x=0
+    y=0
+    #Check columns
+    for y in range(len(board[0])):
+        victory_column = True
+        for x in range(len(board)):
+           victory_column = victory_column and board[x][y] == sign
+        if victory_column:
+            return True
+    
+    x=0
+    y=0
+    #Check diagonals
+    victory_first_diag = True
+    for x in range(len(board)):
+        victory_first_diag = victory_first_diag and board[x][x] == sign
+    if victory_first_diag:
+        return True
 
+    
+    y=0
+    #Check second diagonal
+    victory_second_diag = True
+    for y in range(len(board[0])):
+        x=2-y
+        victory_second_diag = victory_second_diag and board[x][y] == sign
+    if victory_second_diag:
+        return True
+
+    return False
+                   
+""""
 def draw_move(board):
     print()
     
@@ -70,11 +108,14 @@ def draw_move(board):
 
 """
 init_board()
-display_board(board)
 free_fields = make_list_of_free_fields(board)
-while free_fields != []:
+victory = False
+while free_fields != [] and victory==False:
+    display_board(board)
     print(free_fields)
     enter_move(board)
-    display_board(board)
+    victory = victory_for(board, USER_MOVE)
+    if (victory):
+        print("Victory for: ", USER_MOVE ("!")
     free_fields = make_list_of_free_fields(board)
 
