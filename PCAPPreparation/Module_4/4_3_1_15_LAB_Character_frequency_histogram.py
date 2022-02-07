@@ -1,6 +1,6 @@
 from os import strerror
 
-character_frequencies = {}
+character_frequencies = {chr(ch): 0 for ch in range(ord('a'), ord('z') + 1)}
 srcname = input("Enter the source file name: ")
 try:
     src = open(srcname, 'rt')
@@ -8,17 +8,14 @@ try:
     while buffer != '':
         buffer = buffer.lower()
         for ch in buffer:
-            #if not str(ch).isalpha():
-            #    continue
-            ch_exists = ch in character_frequencies
-            if (ch_exists):
-                character_frequencies[ch] += character_frequencies[ch]
-            else:
-                character_frequencies[ch] = 1
+            if not ch.isalpha():
+                continue          
+            character_frequencies[ch] += 1
         buffer = src.read(1000)
     src.close()
     for ch in character_frequencies:
-        print(ch, "->", character_frequencies[ch])
+        if  character_frequencies[ch] > 0:
+            print(ch, "->", character_frequencies[ch])
 except IOError as e:
     print("Cannot open the source file: ", strerror(e.errno))
     exit(e.errno)	
