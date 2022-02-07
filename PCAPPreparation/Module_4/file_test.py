@@ -1,4 +1,4 @@
-"""Reading and writing a normal file"""
+"""Reading and writing a normal file
 import os
 import sys
 try:
@@ -12,7 +12,7 @@ try:
 except IOError as e:
 	print("I/O error occurred: ", os.strerror(e.errno))
 
-"""Reading and writing a binary file"""
+Reading and writing a binary file
 from os import strerror
 
 data = bytearray(10)
@@ -25,11 +25,11 @@ try:
     bf.write(data)
     bf.close()
 except IOError as e:
-    print("I/O error occurred:", strerror(e.errno))
+    print("I/O error occurred:", strerror(e.errno))"""
 
 
 try:
-    brf = open('file.bin', 'rb')
+    brf = open('newtext.txt', 'rb')
     data_read = bytearray(brf.read())
     brf.close()
     for b in data_read:
