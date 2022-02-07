@@ -1,10 +1,28 @@
-class Snake:
-    pass
+class Dog:
+    kennel = 0
+    def __init__(self, breed):
+        self.breed = breed
+        Dog.kennel += 1
+    def __str__(self):
+        return self.breed + " says: Woof!"
 
 
-class Python(Snake):
-    pass
+class SheepDog(Dog):
+    def __str__(self):
+        return super().__str__() + " Don't run away, Little Lamb!"
 
 
-print(Python.__name__, 'is a', Snake.__name__)
-print(Python.__bases__, 'can be', Python.__name__)
+class GuardDog(Dog):
+    def __str__(self):
+        return super().__str__() + " Stay where you are, Mister Intruder!"
+
+class LowlandDog(Dog):
+    def __str__(self):
+        return super().__str__() + " I don't like mountains!."
+
+
+#rocky = SheepDog("Collie")
+luna = GuardDog("Dobermann")
+print(luna)
+charlie = LowlandDog("Retriever")
+print(charlie)
