@@ -7,7 +7,6 @@ def greeting(word):
         if applyTo is None:
             raise AssertionError(greeting_word + " " + "cannot be applied to: " + "None")
         return greeting_word.title() + " " + applyTo.title() + "!"
-    
     return generate
 
 hello = greeting("hello")

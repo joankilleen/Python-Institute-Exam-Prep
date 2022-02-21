@@ -1,28 +1,4 @@
-class Dog:
-    kennel = 0
-    def __init__(self, breed):
-        self.breed = breed
-        Dog.kennel += 1
-    def __str__(self):
-        return self.breed + " says: Woof!"
+import os
 
-
-class SheepDog(Dog):
-    def __str__(self):
-        return super().__str__() + " Don't run away, Little Lamb!"
-
-
-class GuardDog(Dog):
-    def __str__(self):
-        return super().__str__() + " Stay where you are, Mister Intruder!"
-
-class LowlandDog(Dog):
-    def __str__(self):
-        return super().__str__() + " I don't like mountains!."
-
-
-#rocky = SheepDog("Collie")
-luna = GuardDog("Dobermann")
-print(luna)
-charlie = LowlandDog("Retriever")
-print(charlie)
+returned_value = os.system("mkdir my_first_directory")
+print(returned_value)
