@@ -1,4 +1,6 @@
-import os
+import calendar  
 
-returned_value = os.system("mkdir my_first_directory")
-print(returned_value)
+c = calendar.Calendar()
+
+for data in c.monthdays2calendar(2020, 12):
+    print(data)
